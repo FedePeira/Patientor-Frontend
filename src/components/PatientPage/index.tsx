@@ -1,10 +1,10 @@
-import { Patient } from "../../types";
+import { PatientEntry, Entry } from "../../types";
 import { useParams } from "react-router-dom";
 import FemaleIcon from '@mui/icons-material/Female';
 import MaleIcon from '@mui/icons-material/Male';
 
 interface Props {
-  patients : Patient[]
+  patients : PatientEntry[]
 }
 
 const PatientPage = ({ patients } : Props ) => {
@@ -32,6 +32,17 @@ const PatientPage = ({ patients } : Props ) => {
       </h2>
       <div>Date Birth: {patient.dateOfBirth} </div>
       <div>Ocuppation: {patient.occupation} </div>
+      <h2>Entries</h2>
+      {patient.entries.map((e: Entry) => {
+        return (
+          <div>
+            <div> {e.date} {e.description} </div>
+            <ul>
+              {e.diagnosisCodes?.map(d => <li> {d} </li>)}
+            </ul>
+          </div> 
+        );
+      })} 
     </div>
   );
 };
