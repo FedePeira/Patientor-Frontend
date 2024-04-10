@@ -37,9 +37,13 @@ const PatientPage = ({ patients } : Props ) => {
         return (
           <div>
             <div> {e.date} {e.description} </div>
-            <ul>
-              {e.diagnosisCodes?.map(d => <li> {d} </li>)}
-            </ul>
+            {(e.diagnosisCodes || []).length > 0 ? 
+             <ul>
+             {e.diagnosisCodes?.map(d => <li> {d} </li>)}
+             </ul>
+             :
+             <h3>No entries found</h3>
+            }
           </div> 
         );
       })} 
