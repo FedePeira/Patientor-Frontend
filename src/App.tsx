@@ -6,6 +6,7 @@ import { Button, Divider, Container, Typography } from '@mui/material';
 import { apiBaseUrl } from "./constants";
 import { PatientEntry } from "./types";
 
+import diagnosesService from './services/diagnoses';
 import patientService from "./services/patients";
 import PatientListPage from "./components/PatientListPage";
 import PatientPage from "./components/PatientPage";
@@ -15,11 +16,11 @@ const App = () => {
 
   useEffect(() => {
     void axios.get<void>(`${apiBaseUrl}/ping`);
-
     const fetchPatientList = async () => {
       const patients = await patientService.getAll();
       setPatients(patients);
     };
+
     void fetchPatientList();
   }, []);
   
