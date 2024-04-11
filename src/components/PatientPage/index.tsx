@@ -4,6 +4,7 @@ import FemaleIcon from '@mui/icons-material/Female';
 import MaleIcon from '@mui/icons-material/Male';
 import diagnosesService from "../../services/diagnoses";
 import { useEffect, useState } from "react";
+import EntryDetail from "../EntryDetailsPage";
 
 interface Props {
   patients : PatientEntry[],
@@ -57,23 +58,8 @@ const PatientPage = ({ patients } : Props ) => {
       <div>Date Birth: {patient.dateOfBirth} </div>
       <div>Ocuppation: {patient.occupation} </div>
       <h2>Entries</h2>
-      {patient.entries.map((e: Entry, index: number) => {
-        return (
-          <div key={index}>
-            <div> {e.date} {e.description} </div>
-            {(e.diagnosisCodes || []).length > 0 ? 
-             <ul>
-              {Object.values(diagnosesDetails).map(d => 
-                <li key={d.code}>
-                  {d.code} {d.name}
-                </li>
-              )}
-             </ul>
-             :
-             <h3>No entries found</h3>
-            }
-          </div> 
-        );
+      {patient.entries.map((e: Entry) => {
+        return <EntryDetail key={e.id} entry={e} diagnosesDetails={diagnosesDetails} />;
       })} 
     </div>
   );
