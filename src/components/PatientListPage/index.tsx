@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Box, Table, Button, TableHead, Typography, TableCell, TableRow, TableBody } from '@mui/material';
 import axios from 'axios';
 
-import { PatientFormValues, PatientEntry } from "../../types";
+import { PatientFormValues, Patient } from "../../types";
 import AddPatientModal from "../AddPatientModal";
 
 import HealthRatingBar from "../HealthRatingBar";
@@ -11,8 +11,8 @@ import patientService from "../../services/patients";
 import { Link } from "react-router-dom";
 
 interface Props {
-  patients : PatientEntry[]
-  setPatients: React.Dispatch<React.SetStateAction<PatientEntry[]>>
+  patients : Patient[]
+  setPatients: React.Dispatch<React.SetStateAction<Patient[]>>
 }
 
 const PatientListPage = ({ patients, setPatients } : Props ) => {
@@ -65,7 +65,7 @@ const PatientListPage = ({ patients, setPatients } : Props ) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {Object.values(patients).map((patient: PatientEntry) => (
+          {Object.values(patients).map((patient: Patient) => (
             <TableRow key={patient.id}>
               <TableCell>
                 <Link to={`/patients/${patient.id}`}>{patient.name}</Link>

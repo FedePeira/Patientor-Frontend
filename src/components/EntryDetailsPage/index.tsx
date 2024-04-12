@@ -1,14 +1,15 @@
-import { Box, Button, Typography } from "@mui/material";
-import { DiagnosesEntry, Entry } from "../../types";
+import { Box, Typography } from "@mui/material";
+import { Diagnoses, Entry } from "../../types";
 import MedicalInformationIcon from '@mui/icons-material/MedicalInformation';
 import MedicationIcon from '@mui/icons-material/Medication';
 
 interface Props {
   entry: Entry,
-  diagnosesDetails: { [key: string]: DiagnosesEntry }
+  diagnosesDetails: { [key: string]: Diagnoses }
 }
 
-const EntryDetail =({ entry, diagnosesDetails }: Props ) => {
+const EntryDetail =({ entry, diagnosesDetails }: Props ) => { 
+
   const renderEntryDetails = () => {
     switch (entry.type) {
       case 'Hospital':
@@ -63,10 +64,6 @@ const EntryDetail =({ entry, diagnosesDetails }: Props ) => {
         <Typography>Specialist: {entry.specialist}</Typography>
         {renderEntryDetails()}
       </div>
-      
-      <Button variant="contained" onClick={() => openModal()}>
-        Add New Entry
-      </Button>
     </div>
  );
 };

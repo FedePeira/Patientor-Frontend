@@ -1,19 +1,18 @@
-export interface DiagnosesEntry {
+export interface Diagnoses {
   code: string;
   name: string;
   latin?: string;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface BaseEntry{
   id: string;
   description: string;
   date: string;
   specialist: string;
-  diagnosisCodes?: Array<DiagnosesEntry['code']>;
+  diagnosisCodes?: string[];
 }
 
-export interface PatientEntry {
+export interface Patient {
   id: string,
   name: string,
   dateOfBirth: string,
@@ -29,21 +28,34 @@ export enum Gender {
   other = 'other'
 }
 
-export type NonDiagnosesEntry = Omit<DiagnosesEntry,  'latin'>;
+export enum TypeEntry {
+  occupationalHealthcare = 'OccupationalHealthcare',
+  hospital = 'Hospital',
+}
 
-export type NonPatientsEntry = Omit<PatientEntry, 'ssn'>;
+export type NonDiagnoses = Omit<Diagnoses,  'latin'>;
 
-export type NewPatientEntry = Omit<PatientEntry, 'id' | 'entries'>;
+export type DiagnosesCode = Omit<Diagnoses, 'latin' | 'name'>;
+
+export type NonPatient= Omit<Patient, 'ssn'>;
+
+export type NewPatient = Omit<Patient, 'id' | 'entries'>;
+
+export type PatientFormValues = Omit<Patient, "id" | "entries">;
+
+export type OccupationalHealthCareFormValues = Omit<OccupationalHealthCareEntry, "id">;
+
+export type HospitalFormValues = Omit<HospitalEntry, "id">;
 
 interface OccupationalHealthCareEntry extends BaseEntry{
   type: "OccupationalHealthcare";
   employerName: string,
-  sickLeave?: SickLeave
+  sickLeave: SickLeave
 }
 
-interface SickLeave {
-  startDate: string,
-  endDate: string
+export interface SickLeave {
+  startDate?: string,
+  endDate?: string
 }
 
 interface HospitalEntry extends BaseEntry{
@@ -51,7 +63,7 @@ interface HospitalEntry extends BaseEntry{
   discharge: Discharge
 } 
 
-interface Discharge {
+export interface Discharge {
   date: string,
   criteria: string
 }
@@ -60,4 +72,3 @@ export type Entry =
   | HospitalEntry
   | OccupationalHealthCareEntry;
 
-export type PatientFormValues = Omit<PatientEntry, "id" | "entries">;
