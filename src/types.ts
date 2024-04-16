@@ -9,7 +9,7 @@ export interface BaseEntry{
   description: string;
   date: string;
   specialist: string;
-  diagnosisCodes?: string[];
+  diagnosisCode?: Array<Diagnoses['code']>;
 }
 
 export interface Patient {

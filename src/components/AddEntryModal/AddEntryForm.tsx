@@ -23,12 +23,12 @@ const typeOptions: TypeOption[] = Object.values(TypeEntry).map(v => ({
 const AddEntryForm = ({ onCancel, onSubmit }: Props) => {
   const [selectedDiagnoses, setSelectedDiagnoses] = useState<DiagnosesCode[]>([]);
   const [diagnoses, setDiagnoses] = useState<Diagnoses[]>([]);
-  const [type, setType] = useState<string>();
+  const [type, setType] = useState<string>('OccupationalHealthcare');
   const [formOccupationalHealthCare, setFormOccupationalHealthCare] = useState<OccupationalHealthCareFormValues>({
     description: '',
     date: '',
     specialist: '',
-    diagnosisCodes: [],
+    diagnosisCode: [],
     employerName: '',
     sickLeave: {
       startDate: '',
@@ -41,7 +41,7 @@ const AddEntryForm = ({ onCancel, onSubmit }: Props) => {
     description: '',
     date: '',
     specialist: '',
-    diagnosisCodes: [],
+    diagnosisCode: [],
     discharge: {
       date: '',
       criteria: ''
@@ -109,6 +109,7 @@ const AddEntryForm = ({ onCancel, onSubmit }: Props) => {
 
   const addEntry = (event: SyntheticEvent) => {
     event.preventDefault();
+    console.log('Entre al submit');
 
     switch (type) {
       case 'Hospital':

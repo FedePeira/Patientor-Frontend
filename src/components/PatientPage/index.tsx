@@ -30,7 +30,7 @@ const PatientPage = ({ patients } : Props ) => {
     const loadDiagnoses = async () => {
       const details: { [key: string]: Diagnoses } = {};
       if(patient) {
-        for (const dCode of patient.entries.flatMap(e => e.diagnosisCodes || [])) {
+        for (const dCode of patient.entries.flatMap(e => e.diagnosisCode || [])) {
           const diagnosis = await diagnosesService.findById(dCode);
           if (diagnosis) {
             details[dCode] = diagnosis;
@@ -56,6 +56,7 @@ const PatientPage = ({ patients } : Props ) => {
 
   const submitNewEntry = async (values: HospitalFormValues | OccupationalHealthCareFormValues) => {
     try {
+      console.log('Agregando un nuevo entry al patient: ' + patient.id);
       const entry = await patientService.createEntry(patient.id, values);
       setEntries(entries.concat(entry));
       setModalOpen(false);

@@ -18,7 +18,7 @@ const EntryDetail =({ entry, diagnosesDetails }: Props ) => {
             <MedicalInformationIcon />
             <Typography variant="h5">Detalles de la revisión de salud</Typography>
             <Typography variant="h6">Diagnosis: </Typography>
-            {(entry.diagnosisCodes || []).length > 0 ? 
+            {(entry.diagnosisCode || []).length > 0 ? 
               <ul>
                 {Object.values(diagnosesDetails).map(d => 
                   <li key={d.code}>
@@ -27,7 +27,7 @@ const EntryDetail =({ entry, diagnosesDetails }: Props ) => {
                 )}
               </ul>
             :
-              <h3>No entries found</h3>
+              <h3>No diagnosis found</h3>
             }
           </Box>
         );
@@ -38,7 +38,7 @@ const EntryDetail =({ entry, diagnosesDetails }: Props ) => {
             <Typography variant="h5">Detalles de la medicación</Typography>
             <Typography>EmployerName: {entry.employerName} </Typography>
             <Typography variant="h6">Diagnosis: </Typography>
-            {(entry.diagnosisCodes || []).length > 0 ? 
+            {(entry.diagnosisCode || []).length > 0 ? 
               <ul>
                 {Object.values(diagnosesDetails).map(d => 
                   <li key={d.code}>
@@ -47,7 +47,7 @@ const EntryDetail =({ entry, diagnosesDetails }: Props ) => {
                 )}
               </ul>
               :
-              <h3>No entries found</h3>
+              <h3>No diagnosis found</h3>
             }
           </Box>
         );
