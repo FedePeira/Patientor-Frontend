@@ -1,11 +1,12 @@
 import axios from "axios";
 import { Entry, HospitalFormValues, OccupationalHealthCareFormValues, Patient, PatientFormValues } from "../types";
 
-import { apiBaseUrl } from "../constants";
+const apiUrl = import.meta.env.VITE_API_URL;
+const baseUrl = `${apiUrl}/api`;
 
 const getAll = async () => {
   const { data } = await axios.get<Patient[]>(
-    `${apiBaseUrl}/patients`
+    `${baseUrl}/patients`
   );
 
   return data;
@@ -13,7 +14,7 @@ const getAll = async () => {
 
 const create = async (object: PatientFormValues) => {
   const { data } = await axios.post<Patient>(
-    `${apiBaseUrl}/patients`,
+    `${baseUrl}/patients`,
     object
   );
 
@@ -22,7 +23,7 @@ const create = async (object: PatientFormValues) => {
 
 const createEntry = async (patientId: string, object: HospitalFormValues | OccupationalHealthCareFormValues) => {
   const { data } = await axios.post<Entry>(
-    `${apiBaseUrl}/patients/${patientId}/entries`,
+    `${baseUrl}/patients/${patientId}/entries`,
     object
   );
 

@@ -1,11 +1,12 @@
 import axios from "axios";
 import { Diagnoses } from "../types";
 
-import { apiBaseUrl } from "../constants";
+const apiUrl = import.meta.env.VITE_API_URL;
+const baseUrl = `${apiUrl}/api`;
 
 const getAll = async () => {
   const { data } = await axios.get<Diagnoses[]>(
-    `${apiBaseUrl}/diagnoses`
+    `${baseUrl}/diagnoses`
   );
 
   return data;
@@ -13,7 +14,7 @@ const getAll = async () => {
 
 const findById = async (code: string) => {
   try {
-    const { data } = await axios.get<Diagnoses>(`${apiBaseUrl}/diagnoses/${code}`);
+    const { data } = await axios.get<Diagnoses>(`${baseUrl}/diagnoses/${code}`);
     return data;
   } catch (error) {
     console.error(`Error fetching diagnosis with ID ${code}:`, error);
