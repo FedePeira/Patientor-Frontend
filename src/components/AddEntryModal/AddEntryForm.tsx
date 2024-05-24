@@ -159,7 +159,7 @@ const AddEntryForm = ({ onCancel, onSubmit }: Props) => {
           options={diagnoses}
           getOptionLabel={(option) => option.code}
           value={selectedDiagnoses}
-          onChange={(event, newValue) => {
+          onChange={(_, newValue) => {
             setSelectedDiagnoses(newValue); 
             setFormOccupationalHealthCare(prevValues => ({
               ...prevValues,
@@ -171,10 +171,8 @@ const AddEntryForm = ({ onCancel, onSubmit }: Props) => {
              diagnosisCodes: newValue.map(diagnoses => diagnoses.code)
             }));        
           }}
-          renderInput={(params) => <TextField {...params} label="Diagnoses" />}
-        >
-        </Autocomplete>
-
+          renderInput={(params) => <TextField {...params} label="Diagnoses Codes" variant="outlined"/>}
+        />
         <InputLabel style={{ marginTop: 20 }}>Type Entry</InputLabel>
         <Select
           label="Type"
